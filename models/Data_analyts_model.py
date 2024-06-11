@@ -15,6 +15,7 @@ class countryModel(settings.DBBaseModel):
     country_name:str = Column(String(100))
     league_id:int= Column(Integer, ForeignKey('league.league_id', ondelete="CASCADE"))
     league = relationship("LeagueModel")
+    
 
 
 

@@ -3,7 +3,7 @@ from typing import Optional
 from pydantic import BaseModel as SchemasBaseModel
 
 
-class league(SchemasBaseModel):
+class leagueSchemam(SchemasBaseModel):
     league_id:Optional[int]= None
     league_name:str
 
@@ -11,16 +11,16 @@ class league(SchemasBaseModel):
     class Config:
         from_atributes = True
 
-class country(SchemasBaseModel):
+class countrySchemam(SchemasBaseModel):
     country_id:Optional[int]= None
     country_name:str
     league_id:int
-    league: league
+    league: leagueSchemam
 
     class Config:
         from_atributes = True
 
-class player(SchemasBaseModel):
+class playerSchemam(SchemasBaseModel):
     player_id: Optional[int]= None 
     player_name:str 
     player_number: int
@@ -28,28 +28,28 @@ class player(SchemasBaseModel):
     class Config:
         from_atributes = True
 
-class team(SchemasBaseModel):
+class teamSchemam(SchemasBaseModel):
     team_id:Optional[int]=None
     team_name: str
     country_id:int
     league_id: int
 
-    country:country
-    league:league
+    country:countrySchemam
+    league:leagueSchemam
     class Config:
         from_atributes = True
 
-class continente(SchemasBaseModel):
+class continenteSchemam(SchemasBaseModel):
     continente_id:Optional[int] = None
     continente_name:str
     class Config:
         from_atributes = True
 
-class player_continente(SchemasBaseModel):
+class player_continenteSchemam(SchemasBaseModel):
     player_id:int
     continente_id: int
 
-    player:player
-    continente:continente
+    player:playerSchemam
+    continente:continenteSchemam
     class Config:
         from_atributes = True 
