@@ -15,7 +15,7 @@ class countrySchemam(SchemasBaseModel):
     country_id:Optional[int]= None
     country_name:str
     league_id:int
-    league: leagueSchemam
+    league: Optional [leagueSchemam] = None
 
     class Config:
         from_atributes = True
@@ -34,8 +34,8 @@ class teamSchemam(SchemasBaseModel):
     country_id:int
     league_id: int
 
-    country:countrySchemam
-    league:leagueSchemam
+    country:Optional[countrySchemam]= None
+    league:Optional[leagueSchemam]= None
     class Config:
         from_atributes = True
 
@@ -49,7 +49,9 @@ class player_continenteSchemam(SchemasBaseModel):
     player_id:int
     continente_id: int
 
-    player:playerSchemam
-    continente:continenteSchemam
+    player:Optional[playerSchemam] = None
+    continente:Optional[continenteSchemam] = None
     class Config:
         from_atributes = True 
+
+        

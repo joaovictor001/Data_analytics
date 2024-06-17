@@ -12,6 +12,22 @@ from core.deps import get_session
 
 router = APIRouter()
 
+@router.post('/')
+async def post_country(dados: countrySchemam, db: AsyncSession = Depends(get_session)):
+
+    new_country  = countryModel(country_name = dados.country_name,
+                                                            league_id = dados.league_id,
+                                                            )
+    db.add(new_country)
+    await db.commit()
+    return new_country
+
+
 @router.get('/')
-async def get_test():
-    return "123123131"
+async def get_country(db:AsyncSession = Depends(get_session)):
+    async with db as session:
+        query = select(countryModel)
+        result = await session.execute(query)
+        countrys: List[countryModel] = result.scalars().all()
+
+        return countrys

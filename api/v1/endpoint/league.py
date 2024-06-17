@@ -13,6 +13,11 @@ from core.deps import get_session
 
 router = APIRouter()
 
-@router.get('/')
-async def get_test():
-    return "123123131"
+@router.post('/')
+async def post_league(dados: leagueSchemam, db: AsyncSession = Depends(get_session)):
+
+    new_league = leagueModel (league_name = dados.league_name)
+    db.add(new_league)
+    await db.commit()
+
+    return new_league
